@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State var models: [ResponseModel] = []
-    
+    // what is going on?
     var body: some View {
         // Create VStack
         VStack {
