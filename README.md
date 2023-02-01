@@ -1,2 +1,2 @@
 # fielddata-lite
-Traveling Salesman iOS App using a PostgreSQL backend and PHP API for the WGU Bachelor's Capstone
+Traveling Salesman PostgreSQL backend and PHP API for the WGU Bachelor's Capstone
