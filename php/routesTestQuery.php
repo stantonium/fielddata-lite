@@ -13,10 +13,10 @@
     $data = array();
 
     // get rows
-    while ($row = pg_fetch_row($result))
+    while ($row = pg_fetch_array($result))
     {
-        // array_push($data, $row);
-        $data[] = $row;
+        array_push($data, $row);
+        // $data[] = $row;
     }
 
     // send JSON response
