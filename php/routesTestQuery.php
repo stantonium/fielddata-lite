@@ -13,7 +13,7 @@
     $data = array();
 
     // get rows
-    while ($row = pg_fetch_array($result))
+    while ($row = pg_fetch_array($result, NULL, PGSQL_ASSOC))
     {
         array_push($data, $row);
         // $data[] = $row;
