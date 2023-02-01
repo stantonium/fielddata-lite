@@ -12,15 +12,13 @@
     // variable for result
     $data = array();
 
-    // get rows
+    // get rows. Do not use pg_fetch_row(). Do not include numerical indices.
     while ($row = pg_fetch_array($result, NULL, PGSQL_ASSOC))
     {
         array_push($data, $row);
-        // $data[] = $row;
     }
 
     // send JSON response
-    error_log(print_r(json_encode($data), true));
     echo json_encode($data);
 
 ?>
