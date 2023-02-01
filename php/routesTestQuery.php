@@ -7,7 +7,7 @@
     $dbConn = logIntoPostgreSQLroutes();
 
     // test query
-    $result = pg_query_params($dbConn, "select type from lookup_site_type where id < $1", array(0));
+    $result = pg_query_params($dbConn, "select type from lookup_site_type where id > $1", array(0));
 
     // variable for result
     $data = array();
