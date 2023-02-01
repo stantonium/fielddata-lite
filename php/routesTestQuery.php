@@ -19,6 +19,7 @@
     }
 
     // send JSON response
+    error_log(print_r(json_encode($data), true));
     echo json_encode($data);
 
 ?>
