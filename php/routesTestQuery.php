@@ -18,9 +18,6 @@
         array_push($data, $row);
     }
 
-    // Cast DB boolean to PHP boolean
-    $data['isSelected'] = (bool)$data['isSelected'];
-
     // send JSON response
     echo json_encode($data);
 
