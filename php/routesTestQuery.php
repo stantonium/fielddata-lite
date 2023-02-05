@@ -7,7 +7,8 @@
     $dbConn = logIntoPostgreSQLroutes();
 
     // test query
-    $result = pg_query_params($dbConn, 'select id, type, true as "isSelected" from lookup_site_type where id > $1', array(0));
+    $result = pg_query_params($dbConn, 
+    "select id, type, 'true' as \"isSelected\" from lookup_site_type where id > $1", array(0));
 
     // variable for result
     $data = array();
