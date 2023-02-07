@@ -23,6 +23,8 @@
 # 
 # Paths use a YAML config file:
 #   pip install PyYAML
+#
+# Install ExifTool: https://exiftool.org/
 
 # Changelog:
 #   27-SEP-2022 Added functionality for files names with spaces. Added file count. - Dan Hopp
