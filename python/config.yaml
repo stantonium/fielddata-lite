@@ -1,8 +1,0 @@
-# Strings do not need to be in quotes
-EXIF_EXTRACT:
-    exifToolPath: /opt/exiftool/Image-ExifTool-12.55/exiftool # Location and command line to run exiftool
-    tempFilePath: ./temp/ # Path for exif data parsing
-    posErrThreshold: 0.9 # Initial GPS Horizontal Positioning Error threshold in meters. The exif extraction will ignore any image with a value equal or greater to this.
-    _pos_error_limit: 0.9 # Database processing GPS Horizontal Positioning Error threshold in meters. Any value greater or equal to this will be recorded in the exif_error table.
-    _point_within: 0.6096 # Meters. Any point's distance from another point that is within this range will be saved to the exif_error table.
-    csvSavePath: ./exif_data/ # Path to save .csv file(s), if so chosen 
