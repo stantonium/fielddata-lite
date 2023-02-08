@@ -6,12 +6,13 @@
     // log into DB
     $dbConn = logIntoPostgreSQLroutes();
 
+    // Prevent SQL injection
     $colName = htmlentities($_POST['_column_name']);
     $colValue = htmlentities($_POST['_column_value']);
     $orgName = htmlentities($_POST['_org_name']);
 
     $result = pg_query_params($dbConn, 
-    "SELECT * FROM query_search_by_area($1, $2, $3)", array($colName, $colValue,
+    "SELECT * FROM query_search_org_name_by_site($1, $2, $3)", array($colName, $colValue,
     $orgName));
 
     // variable for result
@@ -25,5 +26,6 @@
 
     // send JSON response
     echo json_encode($data);
+    
 
 ?>
