@@ -4,8 +4,6 @@
     require_once "dotEnvLoader.php";
 
     (new DotEnv(__DIR__ . '/../../../fielddata.env'))->load();
-    // (new DotEnv(__DIR__ . '/opt/fielddata-lite/fielddata.env'))->load();
-
  
 	// get vars
     $routesUN = getenv('ROUTES_UN');
