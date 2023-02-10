@@ -10,10 +10,22 @@
     $colName = htmlentities($_POST['_column_name']);
     $colValue = htmlentities($_POST['_column_value']);
     $orgName = htmlentities($_POST['_org_name']);
+    $queryName = htmlentities($_POST['_query_name']);
 
-    $result = pg_query_params($dbConn, 
-    "SELECT * FROM query_search_org_name_by_site($1, $2, $3)", array($colName, $colValue,
-    $orgName));
+    $result = '';
+
+
+    switch ($queryName) {
+        case 'query_search_org_name_by_site':
+            $result = pg_query_params($dbConn, 
+            "SELECT * FROM query_search_org_name_by_site($1, $2, $3)", array($colName, $colValue,
+            $orgName));
+    break;
+        case 'query_get_route_for_app':
+            $result = pg_query_params($dbConn, 
+            "SELECT * FROM query_get_route_for_app($1)", array($colValue));
+    break;
+   }
 
     // variable for result
     $data = array();
