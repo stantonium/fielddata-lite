@@ -7,9 +7,11 @@
     $dbConn = logIntoPostgreSQLroutes();
 
     // Prevent SQL injection
-    $colName = htmlentities($_POST['_column_name']);
+    if(trim($_POST['_column_name']) != ""){
+        $colName = htmlentities($_POST['_column_name']);
+        $orgName = htmlentities($_POST['_org_name']);
+    }   
     $colValue = htmlentities($_POST['_column_value']);
-    $orgName = htmlentities($_POST['_org_name']);
     $queryName = htmlentities($_POST['_query_name']);
 
     $result = '';
