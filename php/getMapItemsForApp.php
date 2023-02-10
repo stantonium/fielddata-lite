@@ -7,7 +7,7 @@
     $dbConn = logIntoPostgreSQLroutes();
 
     // Prevent SQL injection
-    if(trim($_POST['_column_name']) != ""){
+    if(isset($_POST['_column_name'])){
         $colName = htmlentities($_POST['_column_name']);
         $orgName = htmlentities($_POST['_org_name']);
     }   
