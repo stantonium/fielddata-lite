@@ -13,7 +13,9 @@
     if(isset($_POST['_note'])){
         $note = htmlentities($_POST['_note']);
     }
-    $queryName = htmlentities($_POST['_query_name']);
+    if(isset($_POST['_query_name'])){
+        $queryName = htmlentities($_POST['_query_name']);
+    }
 
     $result = '';
 
