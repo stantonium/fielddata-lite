@@ -18,11 +18,6 @@
     $result = '';
 
     switch ($queryName) {
-        case 'select_note':
-            $result = pg_query($dbConn, 
-            "select id, note from notes
-            order by id");
-        break;
         case 'add_note':
             $result = pg_query_params($dbConn, 
             "insert into notes (note)
@@ -40,6 +35,11 @@
                 where id = $1::int", array($id));
         break;
     }
+
+    // After updating the database (if at all), query notes for display
+    $result = pg_query($dbConn, 
+    "select id, note from notes
+    order by id");
 
     // variable for result
     $data = array();
