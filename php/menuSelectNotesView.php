@@ -6,6 +6,10 @@
     // log into DB
     $dbConn = logIntoPostgreSQLroutes();
 
+    $id = '';
+    $note = '';
+    $queryName = '';
+
     // Prevent SQL injection
     if(isset($_POST['_id'])){
         $id = htmlentities($_POST['_id']);
