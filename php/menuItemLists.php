@@ -33,11 +33,6 @@
         break;
     }
 
-    // test query
-    $result = pg_query($dbConn, 
-    "select name from lookup_borders lb
-    order by name");
-
     // variable for result
     $data = array();
 

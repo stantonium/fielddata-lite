@@ -6,7 +6,7 @@
     // log into DB
     $dbConn = logIntoPostgreSQLroutes();
 
-    // test query
+    // query
     $result = pg_query($dbConn, 
     "select name from lookup_borders lb
     order by name");
