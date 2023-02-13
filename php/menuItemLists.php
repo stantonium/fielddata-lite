@@ -16,12 +16,12 @@
     $result = '';
 
     switch ($queryName) {
-        case 'area_view':
+        case 'area_name': // Use the same iOS variable used for searching organism name by site
             $result = pg_query($dbConn, 
             "select name from lookup_borders lb
             order by name");
         break;
-        case 'plot_view':
+        case 'plot_name':
             $result = pg_query($dbConn, 
             "select name from lookup_borders_plot lbp
             order by name");
