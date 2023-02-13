@@ -6,6 +6,10 @@
     // log into DB
     $dbConn = logIntoPostgreSQLroutes();
 
+    $colName = '';
+    $orgName = '';
+
+
     // Prevent SQL injection
     if(isset($_POST['_column_name'])){
         $colName = htmlentities($_POST['_column_name']);
