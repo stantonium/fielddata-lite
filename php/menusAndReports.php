@@ -33,8 +33,8 @@
         break;
         case 'report_route_total_distance':
             $result = pg_query($dbConn, 
-            "select route_name, total_distance_m
-             from query_rpt_route_total_distance()");
+            "select *
+             from query_rpt_route_total_distance()"); // set to * for possible measurement unit additions
         break;
     }
 
