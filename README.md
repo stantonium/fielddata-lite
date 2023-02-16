@@ -77,6 +77,7 @@ git clone https://github.com/exnehilo7/fielddata-lite.git
  ```
  - Update the rights for routes.
   ```
+  \c
   \i /var/www/html/fielddata-lite/SQL/dump/user-rights.sql
   ```
 7.	Move and Update the fielddata.env File
