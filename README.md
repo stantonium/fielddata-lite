@@ -25,11 +25,11 @@ apt-get install apache2
 apt-get install php
 apt-get install php-pgsql (or: apt-get install php[version]-pgsql)
 ```
-2.	Install PostgreSQL.
+2.	Install PostgreSQL and its extensions.
 ```
 apt-get install postgresql
 apt-get install postgis
-apt install postgresql-[pgsqlVersion]-pgrouting
+apt install postgresql-[PostgresSQL'sVersion]-pgrouting
 ```
 3.	Add Git (If necessary).
 ```
@@ -65,6 +65,11 @@ git clone https://github.com/exnehilo7/fielddata-lite.git
  create user routes;
  alter user routes with password ‘PasswordOfYourChoice’;
  alter role routes NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT LOGIN;
+ ```
+ - Enable the extansions in the database.
+ ```
+ CREATE EXTENSION IF NOT EXISTS postgis;
+ CREATE EXTENSION IF NOT EXISTS pgrouting;
  ```
  - Add data using a dump file.
  ```
@@ -107,10 +112,13 @@ where organism_name = '[name]';
 4.	Create the base route data. Pass the chosen route's name and the ID of the user to whom the route will belong. A successful function call will return 1.
 Note: Until user login is implemented into the app, there is only one user.
 ```
-select * from query_route_create_user_base_route('[NameOfRoute]', (select user_id from lookup_users where name = 'Field Data'));
+select * from query_route_create_user_base_route('[NameOfRoute]', 
+(select user_id from lookup_users where name = 'Field Data'));
 ```
 5.	Create the route for display in the app. Pass the ID of the route name and the starting point's ID. A successful function call will return 1.
 ```
-select * from query_route_main((select id from lookup_routes where "name" = '[NameOfRoute]'), [StartingPontID]);
+select * from query_route_main(
+    (select id from lookup_routes where "name" = '[NameOfRoute]'), 
+    [StartingPontID]);
 ```
 6.	The user should now be able to see their route listed within the application’s Saved Routes section.
