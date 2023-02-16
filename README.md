@@ -1,24 +1,14 @@
 # FERN
-FERN is an application designed to solve the Traveling Salesman problem for field data scientists. The user can load a previously created route that will be displayed on a map. The route consists of sequential points. The current point will be highlighted and its organism name displayed. The user can cycle through the points, and they can also search by area or plot for the organism names located within and display the results on a map. The application also features reporting and simple notes.
+FERN (Field Expedition Routing and Navigation) is an application designed to solve the Traveling Salesman problem for field data scientists. The Application has two major components: The iPad iOS 16.1 application itself and a PostgreSQL database backend on a Linux server with Apache and PHP. The iOS App can be found at https://github.com/exnehilo7/fielddata-lite-iOS-app.
 
-Traveling Salesman iOS App using a PostgreSQL backend and PHP API for the WGU Bachelor's Capstone. The iOS App can be found at https://github.com/exnehilo7/fielddata-lite-iOS-app.
-
-
-
-This current version is for a school project.
-
-Application Infrastructure
-The Application has two major components: The iPad iOS 16.1 application itself and a PostgreSQL database backend on a Linux server with Apache and PHP. 
-
-The iOS application project is located at https://github.com/exnehilo7/fielddata-lite-iOS-app and can be opened with XCode running a virtual device on a MacOS machine. For better performance, it is recommended to use one with at least an M2 chip. You can also tether a device to the MacOS machine. 
-This iOS application is currently using a publicly hosted server. If you wish to set up a different or local server, you can follow the steps under the Backend section.
-
-Apple Map performance declines if there are more than 100 displayed annotations. Later versions of the application will hopefully use clustering to allow for more annotations. Until then, the number of items in a saved route or area and plot searches are limited.
+This application is currently built for a school project.
 
 
 ## Backend
-If you wish to use your own hosted database, these are the steps to set up the backend on Linux.
+If you wish to use your own hosted database:
+
 Start as Linux’s root user.
+
 1.	Set Up Apache and PHP.
 ```
 apt-get install apache2
@@ -66,7 +56,7 @@ git clone https://github.com/exnehilo7/fielddata-lite.git
  alter user routes with password ‘PasswordOfYourChoice’;
  alter role routes NOSUPERUSER NOCREATEDB NOCREATEROLE NOINHERIT LOGIN;
  ```
- - Enable the extansions in the database.
+ - Enable the extensions in the database.
  ```
  CREATE EXTENSION IF NOT EXISTS postgis;
  CREATE EXTENSION IF NOT EXISTS pgrouting;
@@ -91,9 +81,9 @@ git clone https://github.com/exnehilo7/fielddata-lite.git
  mv /var/www/html/fielddata-lite/fielddata.env /var/www/.
  nano /var/www/fielddata.env
  ```
-- After the canges are made, **Ctrl+S** then **Ctrl+X**.
+- After the changes are made, **Ctrl+S** then **Ctrl+X**.
 
-## Creating a new Route
+## Creating a New Route
 Planned improvements to the application will allow the user to create their own route.  Until then, a database administrator can create a route with a CSV file supplied by the user. The CSV file is a list of selected IDs from the bsd_site table and their matching organism names from the bsd_tree table (See the ERD file for table relationships). The user will also have to provide the name of the route they wish to create and the organism name they want for the starting point of their route.
 
 NOTE – Due to the hardware limitations of Apple Map and the application’s current version, routes will have to be limited to 100 items or less. For field expeditions that require more than 100 visited points, it is recommended to create several smaller routes.
