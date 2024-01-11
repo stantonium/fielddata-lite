@@ -19,7 +19,7 @@ apt-get install php-pgsql (or: apt-get install php[version]-pgsql)
 ```
 apt-get install postgresql
 apt-get install postgis
-apt install postgresql-[PostgresSQL'sVersion]-pgrouting
+apt-get install postgresql-[PostgresSQL'sVersion]-pgrouting
 ```
 3.	Add Git (If necessary).
 ```
