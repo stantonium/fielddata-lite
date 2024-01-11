@@ -22,9 +22,9 @@ if (is_array($_FILES["file"])) {
 
         $imageFileType = strtolower(pathinfo($uploadFile, PATHINFO_EXTENSION));
 
-        $lat = $_POST["lat"];
+        // $lat = $_POST["lat"];
 
-        $long = $_POST["long"];
+        // $long = $_POST["long"];
 
  
 
@@ -66,11 +66,11 @@ if (is_array($_FILES["file"])) {
 
             echo json_encode(["Message" => "Upload image ".basename($_FILES["file"]["name"])." successfully!",
 
-                                 "Status" => "OK",
+                                 "Status" => "OK" //,
 
-                                "lat" => $_REQUEST["lat"],
+                                // "lat" => $_REQUEST["lat"],
 
-                                "long" => $_REQUEST["long"]
+                                // "long" => $_REQUEST["long"]
 
                                 ]);
 
