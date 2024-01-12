@@ -83,6 +83,11 @@ git clone https://github.com/exnehilo7/fielddata-lite.git
  ```
 - After the changes are made, **Ctrl+S** then **Ctrl+X**.
 
+## PHP.INI file
+In order to upload images, the upload_max_filesize directive should be increased from the default of 2M (for php 7.4) to 10MB.
+Find the php.ini file for your php installation, edit it, and change the line upload_max_filesize = 2M
+to 
+upload_max_filesize = 10M
 ## Creating a New Route
 Planned improvements to the application will allow the user to create their own route.  Until then, a database administrator can create a route with a CSV file supplied by the user. The CSV file is a list of selected IDs from the bsd_site table and their matching organism names from the bsd_tree table (See the ERD file for table relationships). The user will also have to provide the name of the route they wish to create and the organism name they want for the starting point of their route.
 
