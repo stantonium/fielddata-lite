@@ -13,6 +13,16 @@ if (!empty($_POST["sourceHash"])) {
     $sourceHash = htmlentities($_POST["sourceHash"]);
 }
 
+// Insert into DB
+if (!empty($_POST["insertIntoDB"])) {
+    if(htmlentities($_POST["insertIntoDB"]) == "true"){
+        $command = escapeshellcmd('python3 /var/www/html/fielddata/code/python/fern/process_trips.py');
+        $output = shell_exec($command);
+        echo $output;
+        exit;
+    }
+}
+
 $uploadFolder = "./upload";
 
 processFile($fileSavePath, $fileName, $uploadFolder, $sourceHash);
@@ -76,8 +86,7 @@ function uploadFile($uploadFile, $sourceHash) {
                 if (move_uploaded_file($_FILES["file"]["tmp_name"], $uploadFile)) {
 
                     // Check sha256 hash of the file
-                    // $hash = hash_file('sha256', $uploadFile);
-                    $hash = '1234';
+                    $hash = hash_file('sha256', $uploadFile);
 
                     // If not equal, delete the file
                     if ($hash != $sourceHash) {
