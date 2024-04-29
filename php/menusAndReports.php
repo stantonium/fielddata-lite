@@ -36,6 +36,13 @@
             "select *
              from query_rpt_route_total_distance()"); // set to * for possible measurement unit additions
         break;
+        case 'trips_in_db_view':
+            $result = pg_query($dbConn, 
+            "select name from fern.lookup_trip
+            where id in (select lookup_trip_id from fern.trip
+            group by lookup_trip_id)
+            order by name");
+        break;
     }
 
     // variable for result
