@@ -6,17 +6,20 @@
     // log into DB
     $dbConn = logIntoPostgreSQLroutes();
 
-    $colName = '';
-    $orgName = '';
-
+    $colName = "";
+    $orgName = "";
+    $colValue = "";
+    $queryName = "";
 
     // Prevent SQL injection
-    if(isset($_POST['_column_name'])){
-        $colName = htmlentities($_POST['_column_name']);
-        $orgName = htmlentities($_POST['_org_name']);
-    }   
-    $colValue = htmlentities($_POST['_column_value']);
-    $queryName = htmlentities($_POST['_query_name']);
+    if(!empty($_POST['_column_name']) && !empty($_POST['_org_name'])){
+            $colName = htmlentities($_POST['_column_name']);
+            $orgName = htmlentities($_POST['_org_name']);
+        }
+    if(!empty($_POST['_column_value']) && !empty($_POST['_query_name'])){
+        $colValue = htmlentities($_POST['_column_value']);
+        $queryName = htmlentities($_POST['_query_name']);
+    }
 
     $result = '';
 
@@ -26,11 +29,15 @@
             $result = pg_query_params($dbConn, 
             "SELECT * FROM query_search_org_name_by_site($1, $2, $3)", array($colName, $colValue,
             $orgName));
-    break;
+        break;
         case 'query_get_route_for_app':
             $result = pg_query_params($dbConn, 
             "SELECT * FROM query_get_route_for_app($1)", array($colValue));
-    break;
+        break;
+        case 'query_get_trip_for_apple_map':
+            $result = pg_query_params($dbConn, 
+            "SELECT * FROM query_get_trip_for_apple_map($1)", array($colValue));
+        break;
    }
 
     // variable for result
