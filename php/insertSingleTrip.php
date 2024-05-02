@@ -1,25 +1,20 @@
 <?php
 
+    # File needs to be renamed to insertSinglePointForTrip.php
+
     $tripName = $picUUID = $gps = $hdop = $longtitude = $latitude = "";
     $altitude = $scannedText = $timeStamp = $notes = "";
 
- #   if (!empty($_POST["_name"]) && !empty($_POST["_pic_uuid"]) && !empty($_POST["_gps"]) &&
- #       !empty($_POST["_hdop"]) && !empty($_POST["_long"]) && !empty($_POST["_lat"]) &&
- #       !empty($_POST["_alt"]) && !empty($_POST["_scanned_text"]) && !empty($_POST["_time"]) &&
- #       !empty($_POST["_notes"])) {
-
-        $tripName = htmlentities($_POST["_name"]);
-        $picUUID = htmlentities($_POST["_pic_uuid"]);
-        $gps = htmlentities($_POST["_gps"]);
-        $hdop = htmlentities($_POST["_hdop"]);
-        $longtitude = htmlentities($_POST["_long"]);
-        $latitude = htmlentities($_POST["_lat"]);
-        $altitude = htmlentities($_POST["_alt"]);
-        $scannedText = htmlentities($_POST["_scanned_text"]);
-        $timeStamp = htmlentities($_POST["_time"]);
-        $notes = htmlentities($_POST["_notes"]);
-
-  #  } else {exit;}
+    $tripName = htmlentities($_POST["_name"]);
+    $picUUID = htmlentities($_POST["_pic_uuid"]);
+    $gps = htmlentities($_POST["_gps"]);
+    $hdop = htmlentities($_POST["_hdop"]);
+    $longtitude = htmlentities($_POST["_long"]);
+    $latitude = htmlentities($_POST["_lat"]);
+    $altitude = htmlentities($_POST["_alt"]);
+    $scannedText = htmlentities($_POST["_scanned_text"]);
+    $timeStamp = htmlentities($_POST["_time"]);
+    $notes = htmlentities($_POST["_notes"]);
 
     // get login file
     require_once "login.php";
