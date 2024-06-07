@@ -1,16 +1,18 @@
 <?php
 
+    $routeID = $pointOrder = "";
+
+    $routeID = htmlentities($_POST["_route_id"]);
+    $pointOrder = htmlentities($_POST["_point_order"]);
+
     // get login file
     require_once "login.php";
 
     // log into DB
     $dbConn = logIntoPostgreSQLroutes();
 
-    // query
-    $result = pg_query($dbConn, 
-    "select name from lookup_routes
-    where is_active = 'Y'
-    order by name");
+    $result = pg_query_params($dbConn, "call public.update_route_point_color($1, $2)",
+        array($routeID, $pointOrder));
 
     // variable for result
     $data = array();
