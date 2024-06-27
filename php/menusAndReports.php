@@ -12,6 +12,9 @@
     if(isset($_POST['_query_name'])){
         $queryName = htmlentities($_POST['_query_name']);
     }
+    if(isset($_POST['_trip_type'])){
+        $tripType = htmlentities($_POST['_trip_type']);
+    }
 
     $result = '';
 
@@ -37,12 +40,22 @@
              from query_rpt_route_total_distance()"); // set to * for possible measurement unit additions
         break;
         case 'trips_in_db_view':
-            $result = pg_query($dbConn, 
+            $result = pg_query_params($dbConn, 
             "select name from fern.lookup_trip
             where id in (select lookup_trip_id from fern.trip
             group by lookup_trip_id)
             and is_active = 'Y'
-            order by sort_order, name");
+            and trip_type = (select id from fern.lookup_trip_type where type = $1)
+            order by sort_order, name", array($tripType));
+        break;
+        case 'trip_type_view':
+            $result = pg_query($dbConn, 
+            "select distinct type as name from fern.lookup_trip_type ltt 
+            join fern.lookup_trip lt on lt.trip_type = ltt.id
+            where lt.id in (select lookup_trip_id from fern.trip
+            group by lookup_trip_id)
+            and is_active = 'Y'
+            order by 1");
         break;
     }
 
