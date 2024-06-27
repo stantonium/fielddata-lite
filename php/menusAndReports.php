@@ -42,7 +42,7 @@
             where id in (select lookup_trip_id from fern.trip
             group by lookup_trip_id)
             and is_active = 'Y'
-            order by name");
+            order by sort_order, name");
         break;
     }
 
