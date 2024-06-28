@@ -41,14 +41,20 @@ function processFile($fileSavePath, $fileName, $uploadFolder, $sourceHash) {
 
  // See if file already exists on the server
 function doesFileExist($uploadFile, $sourceHash) {
-    if (file_exists($uploadFile)) {
-
-        echo json_encode(["Message" => "file exists!",
-                            "Status" => "Error"]);
-        exit;
-
-    } else {
+    // See if filename has "Scoring" in it. If so, don't check for file existence. May need to add the initial trip CSV as well.
+    if (strpos($uploadFile, "Scoring") == true) {
         uploadFile($uploadFile, $sourceHash);
+    }
+    else {
+        if (file_exists($uploadFile)) {
+
+            echo json_encode(["Message" => "file exists!",
+                                "Status" => "Error"]);
+            exit;
+
+        } else {
+            uploadFile($uploadFile, $sourceHash);
+        }
     }
 }
 
