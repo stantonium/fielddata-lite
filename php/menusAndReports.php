@@ -48,6 +48,13 @@
             and trip_type = (select id from fern.lookup_trip_type where type = $1)
             order by sort_order, name", array($tripType));
         break;
+        case 'trip_list_for_cesium':
+            $result = pg_query($dbConn, 
+            "select name from fern.lookup_trip
+            where id in (select lookup_trip_id from fern.trip
+            group by lookup_trip_id)
+            and is_active = 'Y'");
+        break;
         case 'trip_type_view':
             $result = pg_query($dbConn, 
             "select distinct type as name from fern.lookup_trip_type ltt 
