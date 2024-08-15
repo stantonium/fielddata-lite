@@ -41,8 +41,8 @@ function processFile($fileSavePath, $fileName, $uploadFolder, $sourceHash) {
 
  // See if file already exists on the server
 function doesFileExist($uploadFile, $sourceHash) {
-    // See if filename has "Scoring" in it. If so, don't check for file existence. May need to add the initial trip CSV as well.
-    if (strpos($uploadFile, "Scoring") == true) {
+    // If filename is .csv, re-upload.
+    if (strpos($uploadFile, ".csv") == true) {
         uploadFile($uploadFile, $sourceHash);
     }
     else {
