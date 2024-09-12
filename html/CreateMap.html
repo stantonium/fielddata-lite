@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../ORNL.css">
+</head>
+<header class="site-header" role="banner">
+    <nav class="navbar navbar-default " role="navigation">
+        <div class="container">
+            <div class="row">
+                <div class="site-navigation-inner col-sm-12">
+                    <div class="navbar-header">
+                        <div class="logo">
+                            <!--<a href="http://www.ornl.gov">
+                                <img src="https://STANDARDS.ORNL.GOV/wp-content/uploads/2017/09/ORNL-white.png"
+                                    alt="Website Standards">
+                            </a>-->
+                        </div>
+                    </div>
+                    <div class="site-title nav navbar-nav">
+                        <!--<a href="#home-link">
+                            Applications
+                        </a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="secondary">
+        <nav class="navbar  secondary-nav" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="site-navigation-inner col-sm-12">
+                        <div>
+                            <ul id="menu-main-menu" class="nav navbar-nav">
+                                <li id="menu-item-98"
+                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-98">
+                                    <a href="https://fair.ornl.gov/BioDesign/KPB/">Home</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<body>
+
+    <center>
+        <p><br>
+            <div id="AddTrip">
+                <form action="../php/create_route.php" method="POST" enctype="multipart/form-data">
+
+            </p>
+                What is the name of this trip? <input type="text" name="tripname" id="tripname"></input><br>
+<p>
+             Submit a csv file containing your trip points. <br>
+                The file format should be in the same style as the download files from field data <br>
+                 <br>
+
+            <input type="file" name="fileToUpload" id="fileToUpload" accept='text/plain'></input>
+                <p>
+            <div class="button-wrapper">
+                <p> <input type="submit" value="submit" class="button-big" id="trip" name="trip">
+                </p>
+            </div>
+        </form>
+
+    </center>
