@@ -39,7 +39,7 @@ function processFile($fileSavePath, $fileName, $uploadFolder, $sourceHash) {
     doesFileExist($uploadFile, $sourceHash);
 }
 
- // See if file already exists on the server
+ // See if file already exists on the server - WITH THE MOVE TO CHECKSUM HISTORY ON THE APP, THIS FUNCTION MAY NOT BE REQ'D
 function doesFileExist($uploadFile, $sourceHash) {
     // If filename is .csv, re-upload.
     if (strpos($uploadFile, ".csv") == true) {
