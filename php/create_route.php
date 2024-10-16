@@ -103,8 +103,8 @@
         $counter++;
     }
 
-    // append UTC time to the end of $tripname, formatted to YYYY-MM-DD HH:MM:SS
-    $tripname = $tripname . " " . gmdate("Y-m-d H:i:s");
+    // append UTC time to the end of $tripname, formatted to YYYY-MM-DD_HH-MM-SS
+    $tripname = $tripname . "_" . gmdate("Y-m-d_H-i-s");
 
     // Call postgres function public.query_route_run_through_all(_route_name text, _user_id text). If return value is 1, show javascript alert that the trip was successfully uploaded
     $result = pg_query_params($dbConn, 'SELECT public.query_route_run_through_all($1, $2)', array($tripname, '0'));
