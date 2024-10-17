@@ -36,27 +36,29 @@ function processFile($fileSavePath, $fileName, $uploadFolder, $sourceHash) {
     }
     $uploadFile = $uploadFile . "/" . $fileName;
 
-    doesFileExist($uploadFile, $sourceHash);
+    // 17-OCT-2024 - App will now keep track of new or changed files. No need to check if file exists on server.
+    // doesFileExist($uploadFile, $sourceHash);
+    uploadFile($uploadFile, $sourceHash);
 }
 
- // See if file already exists on the server - WITH THE MOVE TO CHECKSUM HISTORY ON THE APP, THIS FUNCTION MAY NOT BE REQ'D
-function doesFileExist($uploadFile, $sourceHash) {
-    // If filename is .csv, re-upload.
-    if (strpos($uploadFile, ".csv") == true) {
-        uploadFile($uploadFile, $sourceHash);
-    }
-    else {
-        if (file_exists($uploadFile)) {
+ // See if file already exists on the server
+// function doesFileExist($uploadFile, $sourceHash) {
+//     // If filename is .csv, re-upload.
+//     if (strpos($uploadFile, ".csv") == true) {
+//         uploadFile($uploadFile, $sourceHash);
+//     }
+//     else {
+//         if (file_exists($uploadFile)) {
 
-            echo json_encode(["Message" => "file exists!",
-                                "Status" => "Error"]);
-            exit;
+//             echo json_encode(["Message" => "file exists!",
+//                                 "Status" => "Error"]);
+//             exit;
 
-        } else {
-            uploadFile($uploadFile, $sourceHash);
-        }
-    }
-}
+//         } else {
+//             uploadFile($uploadFile, $sourceHash);
+//         }
+//     }
+// }
 
 function uploadFile($uploadFile, $sourceHash) {
     if (!empty($_FILES["file"])) {
