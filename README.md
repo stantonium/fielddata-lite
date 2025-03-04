@@ -1,7 +1,9 @@
 # FERN
-FERN (Field Expedition Routing and Navigation) is an application designed to solve the Traveling Salesman problem for field data scientists. The Application has two major components: The iPad iOS 16.1 application itself and a PostgreSQL database backend on a Linux server with Apache and PHP. The iOS App can be found at https://github.com/exnehilo7/fielddata-lite-iOS-app.
+FERN (Field Expedition Routing and Navigation) is an application designed to solve the Traveling Salesman problem for field data scientists. The Application has two major components: The iPad iOS application itself and a PostgreSQL database backend on a Linux server with Apache and PHP. The iOS App can be found at https://github.com/exnehilo7/fielddata-lite-iOS-app.
 
-This application is currently built for a school project.
+This application and backend was originally created for a school project.
+
+Note: As of 12-SEP-2024, the functions in the database schema file are outdated. Updated schema file is pending.
 
 
 ## Backend
@@ -84,37 +86,8 @@ git clone https://github.com/exnehilo7/fielddata-lite.git
 - After the changes are made, **Ctrl+S** then **Ctrl+X**.
 
 ## PHP.INI file
-In order to upload images, the upload_max_filesize directive should be increased from the default of 2M (for php 7.4) to 10MB.
-Find the php.ini file for your php installation, edit it, and change the line upload_max_filesize = 2M
-to 
-upload_max_filesize = 10M
+In order to upload images, the upload_max_filesize directive should be increased from the default of 2M (for php 7.4) to 10MB or larger.
+Find the php.ini file for your php installation and change **upload_max_filesize**'s value.
+
 ## Creating a New Route
-Planned improvements to the application will allow the user to create their own route.  Until then, a database administrator can create a route with a CSV file supplied by the user. The CSV file is a list of selected IDs from the bsd_site table and their matching organism names from the bsd_tree table (See the ERD file for table relationships). The user will also have to provide the name of the route they wish to create and the organism name they want for the starting point of their route.
-
-NOTE – Due to the hardware limitations of Apple Map and the application’s current version, routes will have to be limited to 100 items or less. For field expeditions that require more than 100 visited points, it is recommended to create several smaller routes.
-
-1.	Using a Database Management System of your choice, clear out data from the **temp_selected_bsd_site_ids** table.
-```
-delete from temp_selected_bsd_site_ids;
-```
-2.	Import the CSV into the **temp_selected_bsd_site_ids** table.
-3.	Get the ID of the starting point.
-```
-select bs.id, organism_name  
-from temp_selected_bsd_site_ids tsbsi
-join bsd_site bs on bs.id = tsbsi.id
-where organism_name = '[name]';
-```
-4.	Create the base route data. Pass the chosen route's name and the ID of the user to whom the route will belong. A successful function call will return 1.
-Note: Until user login is implemented into the app, there is only one user.
-```
-select * from query_route_create_user_base_route('[NameOfRoute]', 
-(select user_id from lookup_users where name = 'Field Data'));
-```
-5.	Create the route for display in the app. Pass the ID of the route name and the starting point's ID. A successful function call will return 1.
-```
-select * from query_route_main(
-    (select id from lookup_routes where "name" = '[NameOfRoute]'), 
-    [StartingPontID]);
-```
-6.	The user should now be able to see their route listed within the application’s Saved Routes section.
+A route can be created by uploading a CSV via the HTML file. Expected columns are currently set to match an export from a different project.
